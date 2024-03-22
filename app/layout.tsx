@@ -1,4 +1,7 @@
 import { Providers } from './providers';
+import { PrismicPreview } from '@prismicio/next'
+import { repositoryName } from '@/prismicio'
+
 import NavBar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -13,8 +16,9 @@ export default function RootLayout({
         <Providers>
           <NavBar />
           {children}
+          <PrismicPreview repositoryName={repositoryName} />
           <Footer />
-          </Providers>
+        </Providers>
       </body>
     </html>
   )

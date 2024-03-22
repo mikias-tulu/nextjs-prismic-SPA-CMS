@@ -1,9 +1,16 @@
-import Image from "next/image";
+// src/app/page.tsx
 
-export default function Home() {
-  return (
-    <>
-    <h1>SPA</h1>
-    </>
-  );
+import { asText } from "@prismicio/client";
+import { SliceZone } from "@prismicio/react";
+
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
+
+
+
+export default async function Home() {
+  const client = createClient();
+  const page = await client.getSingle("homepage");
+
+  return <SliceZone slices={page.data.slices} components={components} />;
 }
