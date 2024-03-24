@@ -1,0 +1,45 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "stepped",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Duis dolor aliquip amet id non ipsum aute elit fugiat eiusmod laborum ullamco consectetur tempor. In consectetur nisi sunt exercitation consectetur esse veniam et minim ullamco dolor in ut elit excepteur."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"lists",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Aliquip duis eu adipisicing."
+									}
+								}
+							]
+						}
+					]
+				]
+			}
+		]
+	}
+]
