@@ -18,7 +18,10 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "project_slice": {
+            "how_it_works": {
+              "type": "SharedSlice"
+            },
+            "events_slice": {
               "type": "SharedSlice"
             },
             "hero_slice": {
