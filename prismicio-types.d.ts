@@ -4,7 +4,10 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = ProjectSliceSlice | HeroSliceSlice;
+type HomepageDocumentDataSlicesSlice =
+  | HowItWorksSlice
+  | EventsSliceSlice
+  | HeroSliceSlice;
 
 /**
  * Content for Homepage documents
@@ -81,6 +84,106 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = HomepageDocument;
+
+/**
+ * Primary content in *EventsSlice → Primary*
+ */
+export interface EventsSliceSliceDefaultPrimary {
+  /**
+   * Title field in *EventsSlice → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_slice.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *EventsSlice → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_slice.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *EventsSlice → Items*
+ */
+export interface EventsSliceSliceDefaultItem {
+  /**
+   * EventImage field in *EventsSlice → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_slice.items[].eventimage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  eventimage: prismic.ImageField<never>;
+
+  /**
+   * EventName field in *EventsSlice → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_slice.items[].eventname
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  eventname: prismic.KeyTextField;
+
+  /**
+   * EventDescription field in *EventsSlice → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_slice.items[].eventdescription
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  eventdescription: prismic.RichTextField;
+
+  /**
+   * EventDate field in *EventsSlice → Items*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_slice.items[].eventdate
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  eventdate: prismic.DateField;
+}
+
+/**
+ * Default variation for EventsSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EventsSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<EventsSliceSliceDefaultPrimary>,
+  Simplify<EventsSliceSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *EventsSlice*
+ */
+type EventsSliceSliceVariation = EventsSliceSliceDefault;
+
+/**
+ * EventsSlice Shared Slice
+ *
+ * - **API ID**: `events_slice`
+ * - **Description**: EventsSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EventsSliceSlice = prismic.SharedSlice<
+  "events_slice",
+  EventsSliceSliceVariation
+>;
 
 /**
  * Primary content in *HeroSlice → Primary*
@@ -163,93 +266,73 @@ export type HeroSliceSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *ProjectSlice → Primary*
+ * Primary content in *HowItWorks → Primary*
  */
-export interface ProjectSliceSliceDefaultPrimary {
+export interface HowItWorksSliceDefaultPrimary {
   /**
-   * Title field in *ProjectSlice → Primary*
+   * Title field in *HowItWorks → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_slice.primary.title
+   * - **API ID Path**: how_it_works.primary.title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Description field in *ProjectSlice → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_slice.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  description: prismic.KeyTextField;
-}
-
-/**
- * Primary content in *ProjectSlice → Items*
- */
-export interface ProjectSliceSliceDefaultItem {
-  /**
-   * Name field in *ProjectSlice → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_slice.items[].name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  name: prismic.KeyTextField;
-
-  /**
-   * Description field in *ProjectSlice → Items*
+   * Description field in *HowItWorks → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_slice.items[].description
+   * - **API ID Path**: how_it_works.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
-
-  /**
-   * Image field in *ProjectSlice → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_slice.items[].image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>;
 }
 
 /**
- * Default variation for ProjectSlice Slice
+ * Primary content in *HowItWorks → Items*
+ */
+export interface HowItWorksSliceDefaultItem {
+  /**
+   * Lists field in *HowItWorks → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_it_works.items[].lists
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  lists: prismic.RichTextField;
+}
+
+/**
+ * Default variation for HowItWorks Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ProjectSliceSliceDefault = prismic.SharedSliceVariation<
+export type HowItWorksSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<ProjectSliceSliceDefaultPrimary>,
-  Simplify<ProjectSliceSliceDefaultItem>
+  Simplify<HowItWorksSliceDefaultPrimary>,
+  Simplify<HowItWorksSliceDefaultItem>
 >;
 
 /**
- * Slice variation for *ProjectSlice*
+ * Slice variation for *HowItWorks*
  */
-type ProjectSliceSliceVariation = ProjectSliceSliceDefault;
+type HowItWorksSliceVariation = HowItWorksSliceDefault;
 
 /**
- * ProjectSlice Shared Slice
+ * HowItWorks Shared Slice
  *
- * - **API ID**: `project_slice`
- * - **Description**: ProjectSlice
+ * - **API ID**: `how_it_works`
+ * - **Description**: HowItWorks
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ProjectSliceSlice = prismic.SharedSlice<
-  "project_slice",
-  ProjectSliceSliceVariation
+export type HowItWorksSlice = prismic.SharedSlice<
+  "how_it_works",
+  HowItWorksSliceVariation
 >;
 
 declare module "@prismicio/client" {
@@ -266,16 +349,21 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      EventsSliceSlice,
+      EventsSliceSliceDefaultPrimary,
+      EventsSliceSliceDefaultItem,
+      EventsSliceSliceVariation,
+      EventsSliceSliceDefault,
       HeroSliceSlice,
       HeroSliceSliceDefaultPrimary,
       HeroSliceSliceDefaultItem,
       HeroSliceSliceVariation,
       HeroSliceSliceDefault,
-      ProjectSliceSlice,
-      ProjectSliceSliceDefaultPrimary,
-      ProjectSliceSliceDefaultItem,
-      ProjectSliceSliceVariation,
-      ProjectSliceSliceDefault,
+      HowItWorksSlice,
+      HowItWorksSliceDefaultPrimary,
+      HowItWorksSliceDefaultItem,
+      HowItWorksSliceVariation,
+      HowItWorksSliceDefault,
     };
   }
 }
