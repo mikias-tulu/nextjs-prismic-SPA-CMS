@@ -91,8 +91,7 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
         <div>
           {
             slice.items.map((item, i) => (
-              <CustomButton key={i} link={item.cta_link} text={item.cta_text} colorScheme="gray"/>
-            
+              <CustomButton key={i} link={item.cta_link} text={item.cta_text || ""} colorScheme="gray"/>
             ))
           }
         </div>

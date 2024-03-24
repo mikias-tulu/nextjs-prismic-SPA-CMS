@@ -1,20 +1,27 @@
-import { Button, Icon } from '@chakra-ui/react'
-import { PrismicLink } from '@prismicio/react'
+import { Button } from '@chakra-ui/react';
+import { ComponentProps } from 'react';
+import { PrismicLink } from '@prismicio/react';
 
+type PrismicLinkProps = ComponentProps<typeof PrismicLink>;
 
-const CustomButton = ({ link, text, colorScheme }) => {
-  return (
-    <PrismicLink field={link}>
-     <Button 
-      size="lg"
-      data-cta
-      colorScheme={colorScheme}
-      >
-        {text}
-       
-     </Button>
-    </PrismicLink>
-  )
+interface CustomButtonProps {
+  link: PrismicLinkProps['field']; 
+  text: string;
+  colorScheme?: string; 
 }
 
-export default CustomButton
+const CustomButton: React.FC<CustomButtonProps> = ({ link, text, colorScheme = "gray" }) => {
+  return (
+    <PrismicLink field={link}>
+      <Button 
+        size="lg"
+        data-cta
+        colorScheme={colorScheme}
+      >
+        {text}
+      </Button>
+    </PrismicLink>
+  );
+};
+
+export default CustomButton;
