@@ -24,7 +24,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const Links = ['Home', 'Events', 'How it works']
+const Links = ['Home', 'Events', 'How it works', 'Blogs']
 
 const NavLink = (props: Props) => {
   const { children } = props
